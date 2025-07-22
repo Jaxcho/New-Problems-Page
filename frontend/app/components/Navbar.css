@@ -1,0 +1,11 @@
+nav {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        padding: 20px 0px;
+        }
+        nav details ul{
+        position: absolute;
+        z-index: 10;
+        border: 2.1px solid black;
+        }

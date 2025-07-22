@@ -1,0 +1,19 @@
+body {
+    font-family: 'Courier New', monospace;
+}
+.resource {
+    border: 5px solid black;
+    padding: 12px;
+    margin: 15px 10px;
+    width: 33%;
+    }
+    .row {
+    display: flex;
+    gap: 200px 35px;
+    flex-direction: row;
+    justify-content: space-around;
+    }
+    .answer-form {
+    display: flex;
+    flex-direction: col;
+    }

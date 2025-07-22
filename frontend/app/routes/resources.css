@@ -1,0 +1,15 @@
+.resource {
+    border: 5px solid white;
+    padding: 12px;
+    margin: 5px;
+}
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.answer-form {
+    display: flex;
+    flex-direction: col;
+
+}
