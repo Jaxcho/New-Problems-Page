@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{%block title%}
+New problem{%endblock %}
+
+    {% block style %}
+    body {
+    font-family: 'Courier New', monospace;
+    }
+    {%endblock%}
+
+{% block scripts %}
+<!--    <script>-->
+<!--        // get user_id from localstorage-->
+<!--        window.onload = function(){-->
+<!--            //document.getElementById("user_id").value = window.localStorage.getItem("user_id");-->
+<!--            //document.getElementById("access-token").value = window.localStorage.getItem("access_token");-->
+<!--        }-->
+<!--    </script>-->
+    {%endblock%}
+    {%block content%}
+
+
+<form action="/problems/post" method="POST">
+    <input name="user_id" id="user_id" hidden>
+    <input name="access-token" id="access-token" hidden>
+  <label for="Problem">Problem</label>
+  <input name="Problem">
+
+  <label for ="Level">Level</label>
+  <input name="Level">
+
+  <select name="Topic" id="Topic">
+  <option value="Algebra">Algebra</option>
+  <option value="Combinatorics">Combinatorics</option>
+  <option value="Geometry">Geometry</option>
+  <option value="Number Theory">Number Theory</option>
+
+</select>
+
+  <label for ="Answer">Answer</label>
+  <input name="Answer">
+
+  <input type="submit">
+
+</form>
+{%endblock%}

@@ -1,0 +1,55 @@
+
+{% extends 'base.html' %}
+{%block scripts%}
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+{%endblock%}
+{% block style %}
+    .problem {
+    border: 5px solid black;
+    padding: 12px;
+    margin: 5px;
+    }
+    .row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    }
+    .answer-form {
+    display: flex;
+    flex-direction: col;
+
+    }
+{% endblock %}
+    <!--    For row; read up on flexbox and flex-direction -->
+{%block content%}
+    {%for problem in problems%}
+    <div id="{{problem['id']}}" class="problem">
+        <div class="row">
+            <span style="font-size: 20px">
+                {{problem['topic']}}
+            </span>
+            <span style="font-size: 20px" >
+                {{problem['level']}}
+            </span>
+        </div>
+        <div>
+            <p>
+                {{problem['problem']}}
+            </p>
+        </div>
+        <form action="/answer" method="POST" class="answer-form">
+            <input name="user_id" class="user_id" hidden>
+            <input name="id" value="{{problem['id']}}" hidden>
+            <textarea name="answer" rows="3" placeholder="Type answer here"></textarea>
+            <input type="submit">
+
+        </form>
+        <p style="font-size: 9.42px; text-align: right">
+            Created at {{problem['created_at']}}
+        </p>
+    </div>
+
+
+    {%endfor%}
+
+{%endblock%}

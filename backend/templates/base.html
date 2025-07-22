@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+
+        window.onload = function(){
+            let logged_in=false;
+
+           const token = window.localStorage.getItem("access_token");
+
+           if (token!==null) {
+            logged_in=true;
+           }
+           const user_id = window.localStorage.getItem("user_id");
+           if(!logged_in){
+            document.getElementById("post_problem_page").hidden = true;
+
+            document.getElementById("auth").innerHTML = `<a href="/login"> Login </a><a href="/auth/signup"> Signup </a>`
+            }
+            else {
+            document.getElementById("post_problem_page").innerHTML = `<a href="/problems/post"> Post problem</a>`
+            if (document.getElementById("user_id")!==null){
+            document.getElementById("user_id").value = window.localStorage.getItem("user_id");
+            }
+            if (document.getElementsByClassName("user_id")!==null){
+            for(const element of document.getElementsByClassName("user_id")){
+                element.value = window.localStorage.getItem("user_id");
+             }
+            }
+             if(document.getElementById("access-token")!==null){
+            document.getElementById("access-token").value = window.localStorage.getItem("access_token");
+            }
+                document.getElementById("auth").innerHTML = `<details><summary> Profile</summary><ul>
+            <li>
+                <form action="/account" method="post">
+                <input hidden name="access-token" value=${token}>
+                <input hidden name="user_id" value=${user_id}>
+                <button type="submit">
+                    Account
+                </button>
+                </form>
+
+            </li>
+            <li>
+            <a href ='/settings'>
+                Settings
+            </a>
+            </li>
+            <li>
+                <a href="/signout">
+                    Signout
+                </a>
+            </li>
+        </ul>
+    </details>`
+
+    }
+        }
+    </script>
+    <meta charset="UTF-8">
+    <title>{% block title%}{% endblock %}</title>
+    <style>
+        nav {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        padding: 20px 0px;
+        }
+        nav details ul{
+        position: absolute;
+        z-index: 10;
+        border: 2.1px solid black;
+        background-color: white;
+        }
+        body {
+    font-family: 'Courier New', monospace;
+    }
+        {%block style%}{%endblock%}
+    </style>
+    {% block scripts %}
+    {% endblock %}
+</head>
+<body>
+<nav>
+    <a href="/">Home</a>
+    <a href="/resources"> Resources</a>
+    <div id="post_problem_page"></div>
+    <a href="/problems/browse"> Problems</a>
+    <div id="auth">
+
+    </div>
+<!--    <a href="/login"> Login </a>-->
+<!--    <a href="/auth/signup"> Signup </a>-->
+<!--    <details>-->
+<!--        <summary> Profile</summary>-->
+<!--        <ul>-->
+<!--            <li>-->
+<!--                <a href="/account">-->
+<!--                    Account-->
+<!--                </a>-->
+
+<!--            </li>-->
+<!--            <li>-->
+<!--            <a href ='/settings'>-->
+<!--                Settings-->
+<!--            </a>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--                <a href="/signout">-->
+<!--                    Signout-->
+<!--                </a>-->
+<!--            </li>-->
+<!--        </ul>-->
+<!--    </details>-->
+</nav>
+{% block content%}{%endblock %}
+</body>
+</html>
+
+
+<!-- Account page-->
+<!-- Settings: Font, Dark Mode,  -->
+<!-- Problem score leaderboard -->
+<!-- Access token expiration, check for validity  -->
+<!--Problem right/wrong-->
+<!--keep track of done problems-->
+<!--add comments to problems, accessible when completed.-->
+<!--keep track of how many answer attempts a problem gets for sorting-->
+<!--sort problems based on # of answers/ based of topic, level, etc.-->
+
+<!--
+install bun : https://bun.sh/
+curl -fsSL https://bun.sh/install | bash
+
+
+-->

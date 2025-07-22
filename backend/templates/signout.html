@@ -1,0 +1,37 @@
+
+{% extends 'base.html' %}
+{%block scripts%}
+    <script>
+        // get user_id from localstorage
+        window.onload = function(){
+            // user_id pulled from LocalStorage/SessionStorage
+            window.localStorage.removeItem("access_token");
+            window.localStorage.removeItem("user_id");
+            setTimeout(()=>{
+            window.location.replace('/')
+            },3000)
+        }
+    </script>
+{%endblock%}
+{% block style %}
+    .problem {
+    border: 5px solid black;
+    padding: 12px;
+    margin: 5px;
+    }
+    .row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    }
+    .answer-form {
+    display: flex;
+    flex-direction: col;
+
+    }
+{% endblock %}
+    <!--    For row; read up on flexbox and flex-direction -->
+{%block content%}
+<p>SIGNED OUT</p>
+
+{%endblock%}

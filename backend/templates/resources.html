@@ -1,0 +1,64 @@
+{%extends 'base.html'%}
+
+{% block style %}
+    .resource {
+    border: 5px solid black;
+    padding: 12px;
+    margin: 5px;
+    }
+    .row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    }
+    .answer-form {
+    display: flex;
+    flex-direction: col;
+
+    }
+{% endblock %}
+
+{%block content%}
+<form action="/resources" method="POST">
+    <input name="user_id" id="user_id" hidden>
+    <input name="access-token" id="access-token" hidden>
+  <label for="Link">Link</label>
+  <input name="Link">
+
+  <label for ="Level">Level (Minimum, 0=all)</label>
+  <input name="Level" type = 'number'>
+
+  <select name="Topic" id="Topic">
+  <option value="Algebra">Algebra</option>
+  <option value="Combinatorics">Combinatorics</option>
+  <option value="Geometry">Geometry</option>
+  <option value="Number Theory">Number Theory</option>
+
+      <option value="All">All</option>
+</select>
+
+  <input type="submit">
+
+</form>
+
+{%for resource in data%}
+    <div id="{{resource['id']}}" class="resource">
+        <div class="row">
+            <span style="font-size: 20px">
+                {{resource['topic']}}
+            </span>
+            <span style="font-size: 20px" >
+                {{resource['level']}}
+            </span>
+            <a style="font-size: 20px" href="http://{{resource['link']}}" target="_blank">
+                {{resource['link']}}
+            </a>
+        </div>
+
+
+    </div>
+
+
+    {%endfor%}
+
+{%endblock%}
